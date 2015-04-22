@@ -9,7 +9,7 @@ TTYBAUD		?=115200
 PROGNAME	= outfile
 
 # Compiler and linker flags
-CFLAGS		+= -ffreestanding -march=mips32r2 -msoft-float -Wa,-msoft-float
+CFLAGS		+= -Wall -std=c99 -ffreestanding -march=mips32r2 -msoft-float -Wa,-msoft-float -G 0
 ASFLAGS		+= -msoft-float
 LDFLAGS		+= -T "p$(shell echo "$(DEVICE)" | tr '[:upper:]' '[:lower:]').ld"
 
