@@ -5,7 +5,7 @@
 
 .macro STUB num
 	.align 4
-	.section .vector_new_\num
+	.section .vector_new_\num,"ax",@progbits
 	.global __vector_\num
 	__vector_\num:
 		movi $k0, _isr_primary_install
@@ -95,6 +95,7 @@ STUB 63
 .global _isr_stub
 _isr_stub:
 	eret
+	nop
 
 .align 4
 .global _isr_primary_install
@@ -170,3 +171,15 @@ _isr_primary_install:
 .word _isr_stub
 .word _isr_stub
 .word _isr_stub
+
+# Exceptions are handled here (trap, syscall, etc)
+.section .gen_handler,"ax",@progbits
+.set noreorder
+.ent _gen_exception
+_gen_exception:
+	mfc0 $k0, $14, 0
+	addi $k0, $k0, 4
+	mtc0 $k0, $14, 0
+	eret
+
+.end _gen_exception
