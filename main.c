@@ -289,10 +289,10 @@ int main(void) {
 	SPI2CONbits.ON = 1;
 	
 	display_init();
-	display_string(0, "such world!");
-	display_string(1, "much hello!");
-	display_string(2, "many text!");
-	display_string(3, "wow!");
+	display_string(0, "such world");
+	display_string(1, "much hello");
+	display_string(2, "many text");
+	display_string(3, "wow");
 	display_update();
 	
 	display_image(96, icon);
